@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global catch-all safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Secured clinical records
+    match /baheya_clinical_records/{recordId} {
+      allow read, write: if true;
+    }
+
+    // Secured employee registry accounts
+    match /baheya_staff_registry/{userId} {
+      allow read, write: if true;
+    }
+
+    // Secured unit compliance audits
+    match /baheya_daily_audits/{auditId} {
+      allow read, write: if true;
+    }
+  }
+}

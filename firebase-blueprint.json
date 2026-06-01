@@ -1,0 +1,76 @@
+{
+  "entities": {
+    "SavedRecord": {
+      "title": "Clinical Record",
+      "description": "Clinical department checklist records containing daily checks for a grid of 31 days.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "templateId": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "department": { "type": "string" },
+        "staffName": { "type": "string" },
+        "staffId": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "patientName": { "type": "string" },
+        "patientMRN": { "type": "string" },
+        "diagnosis": { "type": "string" },
+        "gridData": { "type": "array" }
+      },
+      "required": ["id", "templateId", "date", "department", "staffName", "staffId", "gridData"]
+    },
+    "AppUser": {
+      "title": "Clinical Staff",
+      "description": "Registry of system staff authorized to access specific medical departments.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nameAr": { "type": "string" },
+        "nameEn": { "type": "string" },
+        "role": { "type": "string" },
+        "avatarInitials": { "type": "string" },
+        "department": { "type": "string" },
+        "staffId": { "type": "string" },
+        "pin": { "type": "string" },
+        "email": { "type": "string" }
+      },
+      "required": ["id", "nameAr", "nameEn", "role", "department", "staffId", "pin", "email"]
+    },
+    "UnitDailyChecklist": {
+      "title": "Unit Audit Log",
+      "description": "Completed checksheets of duties verified by supervisors and clinical heads.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "department": { "type": "string" },
+        "date": { "type": "string" },
+        "completedByStaffName": { "type": "string" },
+        "completedByStaffId": { "type": "string" },
+        "completedAt": { "type": "string" },
+        "status": { "type": "string" },
+        "answers": { "type": "object" },
+        "auditedByStaffName": { "type": "string" },
+        "auditedByStaffId": { "type": "string" },
+        "auditedAt": { "type": "string" },
+        "auditNotes": { "type": "string" }
+      },
+      "required": ["id", "department", "date", "completedByStaffName", "completedByStaffId", "completedAt", "status", "answers"]
+    }
+  },
+  "firestore": {
+    "/baheya_clinical_records/{recordId}": {
+      "schema": "SavedRecord",
+      "description": "Saved clinical custom checklists and 31-day logs across units."
+    },
+    "/baheya_staff_registry/{userId}": {
+      "schema": "AppUser",
+      "description": "Certified personnel registry details."
+    },
+    "/baheya_daily_audits/{auditId}": {
+      "schema": "UnitDailyChecklist",
+      "description": "Daily supervisor compliance sheets."
+    }
+  }
+}

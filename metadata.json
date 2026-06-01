@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Baheya Medical Forms - إدارة نماذج مستشفى بهية",
+  "description": "نظام لإدارة وطباعة النماذج والجرودات الطبية والتمريضية لمستشفى بهية باللغتين العربية والإنجليزية مع قاعدة بيانات محلية أوفلاين",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

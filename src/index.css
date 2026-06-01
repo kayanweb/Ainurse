@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply antialiased text-gray-900 bg-slate-50 font-sans;
+  }
+}
+
+/* Print specific styles to produce exact replicas */
+@media print {
+  /* Hide all non-printable browser UI, sidebars, dashboard elements */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 10pt !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  /* Force exact replica borders to be sharp in print */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  th, td {
+    border: 1px solid #000000 !important;
+    padding: 4px 6px !important;
+    font-size: 8pt !important;
+    color: #000000 !important;
+    background-color: transparent !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  th {
+    font-weight: 700 !important;
+    background-color: #f3f4f6 !important;
+  }
+
+  /* Keep checklist grid columns thin */
+  .day-col {
+    width: 2.2% !important;
+    max-width: 2.2% !important;
+    text-align: center !important;
+    padding: 2px 0 !important;
+  }
+
+  /* Prevent page breaks inside form headers */
+  .avoid-break {
+    page-break-inside: avoid !important;
+  }
+
+  /* Ensure text is clearly visible */
+  input, select, textarea {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    font-size: 9pt !important;
+    color: black !important;
+    resize: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+  }
+
+  /* Custom page setup */
+  @page {
+    size: A4 portrait;
+    margin: 1.2cm 1cm 1.2cm 1cm;
+  }
+}
+
+/* Custom scrollbars for awesome grid experience */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400;
+}
+
